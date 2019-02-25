@@ -9,6 +9,7 @@ var TeacherSchema = Schema({
     email: String,
     password: String,
     role: String,
+    students: String,
     career: {type: Schema.ObjectId, ref: 'Career'},
 });
 

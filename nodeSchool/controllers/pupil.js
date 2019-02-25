@@ -6,7 +6,7 @@ function savePupil(req, res){
     var pupil = new Pupil();
     var params = req.body;
 
-    if(req.see.role == 'ROLE_ADMIN'){
+    if(req.see.role == 'ROLE_TEACHER'){
       if(params.name && params.surname){
         pupil.name = params.name;
         pupil.surname = params.surname;

@@ -13,6 +13,7 @@ api.put('/justUpdate/:id', md_auth.ensureAut, TeacherController.updateTeacher);
 api.put('/quitTeacher/:id', md_auth.ensureAut, TeacherController.dropTeacher);
 api.get('/listTeachers', md_auth.ensureAut, TeacherController.listTeacher);
 api.post('/listPu', md_auth.ensureAut, TeacherController.student);
+api.get('/findEverybody', md_auth.ensureAut, TeacherController.encontrarTodos);
 
 
 module.exports = api;

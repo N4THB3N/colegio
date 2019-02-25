@@ -152,7 +152,7 @@ function saveAdmin(req, res){
   function dropAdmin(req, res){
     var adminId = req.params.id;  
   
-    Teacher.findOneAndDelete({ _id:adminId }, (err, adminDelete) => {
+    Admin.findOneAndDelete({ _id:adminId }, (err, adminDelete) => {
       if(err){
         res.status(500).send({
           message: 'There was an error, no way to drop the record'
@@ -170,6 +170,7 @@ function saveAdmin(req, res){
       }
     })
   }
+
 module.exports = {
     checkAdmin,
     saveAdmin,

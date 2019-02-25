@@ -138,7 +138,9 @@ function dropTeacher(req, res){
           }else{
             if(teacherNa){
                pupil.find({teacher:teacherNa._id}, (err, otroError) =>{
-                 res.status(500).send({teacherNa, otroError})
+                teacherNa['students'] = otroError;
+                var students = teacherNa.students;
+                 res.status(500).send({students});
                }); 
             }else{
               res.status(500).send({message: 'No user found'});
@@ -150,11 +152,29 @@ function dropTeacher(req, res){
       }
   }
 
+  function encontrarTodos(req, res){
+    if(req.see.role == 'ROLE_ADMIN'){
+      var result = {};
+
+      Teacher.find({}, (err, teachers) =>{
+        teachers.forEach((teacher) => {
+          pupil.find({teacher: teacher._id}, (err, students) =>{
+            result[teacher.name] = students;
+         });
+        });
+      });
+        res.status(200).send({result});
+    }else{
+      res.status(500).send({message: 'Admin is the only one which is allowed to this'});
+    }
+  }
+
 module.exports =  {
     probar,
     saveTeacher,
     updateTeacher,
     listTeacher,
     dropTeacher,
-    student
+    student,
+    encontrarTodos
 }
